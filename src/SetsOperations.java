@@ -31,8 +31,9 @@ public class SetOperations {
 	 * @return union 
 	 */
 	public List<Integer> union(List<Integer> setA, List<Integer>setB) {
-		
-		int max = Math.max(Collections.max(setA), Collections.max(setB));	//will collect max value from both sets
+
+	//will collect max value from both sets
+	int max = Math.max(Collections.max(setA), Collections.max(setB));
         boolean[] union = new boolean[max+1];
 
         // Mark elements first set
