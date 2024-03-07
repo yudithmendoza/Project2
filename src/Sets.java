@@ -12,10 +12,13 @@ public class Sets {
 	 * @param list
 	 */
 	public static void print(List<Integer> list) {
-		for(int x = 0; x < list.size(); x++) {
-			System.out.print(list.get(x) + ", ");
+		Iterator<Integer> it = list.iterator();
+		if (it.hasNext()) {
+		    System.out.print(it.next());
 		}
-	}
+		while (it.hasNext()) {
+		    System.out.print(", " + it.next());
+		}
 
 	public static void main(String[] args) {
 		
