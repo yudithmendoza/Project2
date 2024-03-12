@@ -19,8 +19,24 @@ public class SetOperations {
 	 * @return complement of set A
 	 */
 	public List<Integer> complement(List<Integer> set, List<Integer> setA) {
-		//TODO
-		return null;
+		
+		//make an array of booleans that goes from 0-(max integer from original set)
+		int max = Collections.max(set);		
+		boolean[] comp = new boolean[max+1];
+		
+		//set all indices from set A true
+		for(int elem : setA) {
+			comp[elem] = true;
+		}
+		
+		//checks which values are false and if they are also in the original set
+		List<Integer> result = new ArrayList<>();
+        	for (int i = 0; i < comp.length; i++) {
+            	if (!comp[i] && set.contains(i)) {
+                result.add(i);
+            	}
+        	}
+        	return result;
 	}
 	
 	/**
@@ -32,25 +48,25 @@ public class SetOperations {
 	 */
 	public List<Integer> union(List<Integer> setA, List<Integer>setB) {
 
-	//will collect max value from both sets
-	int max = Math.max(Collections.max(setA), Collections.max(setB));
-        boolean[] union = new boolean[max+1];
+		//will collect max value from both sets
+		int max = Math.max(Collections.max(setA), Collections.max(setB));
+        	boolean[] union = new boolean[max+1];
 
-        // Mark elements first set
-        for (int elem : setA) {
-            union[elem] = true;
-        }
-        //from second set
-        for (int elem : setB) {
-            union[elem] = true;
-        }
+        	// Mark elements first set
+        	for (int elem : setA) {
+            	union[elem] = true;
+        	}
+        	//from second set
+        	for (int elem : setB) {
+            	union[elem] = true;
+        	}
 
-        // Collect indices where value is true
-        List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < union.length; i++) {
-            if (union[i]) {
+        	// Collect indices where value is true
+        	List<Integer> result = new ArrayList<>();
+        	for (int i = 0; i < union.length; i++) {
+            	if (union[i]) {
                 result.add(i);
-            }
+            	}
         }
         return result;
 		
