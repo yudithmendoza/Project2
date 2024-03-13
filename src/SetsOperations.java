@@ -20,22 +20,24 @@ public class SetOperations {
 	 */
 	public List<Integer> complement(List<Integer> set, List<Integer> setA) {
 		
-		//make an array of booleans that goes from 0-(max integer from original set)
-		int max = Collections.max(set);		
-		boolean[] comp = new boolean[max+1];
+		int size = set.size();
+		boolean[] check = new boolean[size];
 		
-		//set all indices from set A true
-		for(int elem : setA) {
-			comp[elem] = true;
+		List<Integer> result = new ArrayList<>();	
+		
+		//if setA has the element at set[x], check[x] gets marked as true
+		for(int x = 0; x < size; x++) {
+			if(setA.contains(set.get(x))){
+				check[x] = true;
+			}
 		}
 		
-		//checks which values are false and if they are also in the original set
-		List<Integer> result = new ArrayList<>();
-        	for (int i = 0; i < comp.length; i++) {
-            	if (!comp[i] && set.contains(i)) {
-                result.add(i);
-            	}
-        	}
+		//add any items from array booleans that are marked as false 
+		for(int x = 0; x < size; x++) {
+			if(!check[x]) {
+				result.add(set.get(x));
+			}
+		}
         	return result;
 	}
 	
