@@ -96,8 +96,25 @@ public class SetOperations {
 	 * @return difference of setA and setB
 	 */
 	public List<Integer> difference(List<Integer> setA, List<Integer> setB) {
-		//TODO
-		return null;
+		int size = setA.size();
+		boolean[] check = new boolean[size];
+		
+		//mark indices in boolean array as true if corresponding index element from set A is also in set B
+		for(int x = 0; x < size; x++) {
+			if(setB.contains(setA.get(x))) {
+				check[x] = true;
+			}
+		}
+		
+		List<Integer> result = new ArrayList<>();	
+		
+		//collect values from set A from indices where boolean has marked them as false
+		for(int x = 0; x < size; x++) {
+			if(!check[x]) {
+				result.add(setA.get(x));
+			}
+		}
+		return result;
 	}
 	
 	/**
