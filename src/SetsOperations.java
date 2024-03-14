@@ -127,7 +127,8 @@ public class SetOperations {
 	 */
 	public List<Integer> symmetricDifference(List<Integer> setA, List<Integer> setB) {
 		List<Integer> result = new ArrayList<>();
-		
+
+		//(A-B)∪(B-A)
 		result = (union(difference(setA, setB), difference(setB, setA)));
 		return result;
 	}
