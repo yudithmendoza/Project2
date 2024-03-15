@@ -21,12 +21,12 @@ public class MSOperations {
 	
 		for(int x = 0; x < setA.size(); x++) {
 			if(copy.contains(setA.get(x))) {
-				copy.remove(setA.get(x));						    //remove from second set if element is already in set A
+				copy.remove(setA.get(x));	//remove from second set if element is already in set A
 			}													
-			result.add(setA.get(x));							    //otherwise add element from set A to new list
+			result.add(setA.get(x));		//otherwise add element from set A to new list
 		}
 		
-		result.addAll(copy);									      //add remaining elements of set B
+		result.addAll(copy);				//add remaining elements of set B
 		return result;									
 	}
 	
@@ -63,11 +63,11 @@ public class MSOperations {
 		List<Integer> result = new ArrayList<>();
 		
 		for(int x = 0; x < setA.size(); x++) {
-			if(copy.contains(setA.get(x))) {				      //if element is in both sets, nothing gets added
-				copy.remove(setA.get(x));					          //element is removed from copy, so element is not checked for in set A again
+			if(copy.contains(setA.get(x))) {		//if element is in both sets, nothing gets added
+				copy.remove(setA.get(x));		//element is removed from copy, so element is not checked for in set A again
 			}										
 			else {
-				result.add(setA.get(x));					          //otherwise element from set A is added to new list						
+				result.add(setA.get(x));		//otherwise element from set A is added to new list						
 			}
 		}
 		return result;
