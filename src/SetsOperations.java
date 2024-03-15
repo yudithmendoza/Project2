@@ -28,13 +28,13 @@ public class SetOperations {
 		
 		for(int x = 0; x < size; x++) {
 			if(setA.contains(set.get(x))){
-				check[x] = true;					//if set A has the element at x, check[x] gets marked as true
+				check[x] = true;		//if set A has the element at x, check[x] gets marked as true
 			}
 		}
 		
 		for(int x = 0; x < size; x++) {
 			if(!check[x]) {
-				result.add(set.get(x));				//add any items from boolean array that are false 
+				result.add(set.get(x));		//add any items from boolean array that are false 
 			}
 		}
         return result;
@@ -49,21 +49,21 @@ public class SetOperations {
 	 */
 	public List<Integer> union(List<Integer> setA, List<Integer>setB) {
 		
-		int max = Math.max(Collections.max(setA), Collections.max(setB));		//will collect max value from both sets
+		int max = Math.max(Collections.max(setA), Collections.max(setB));	//will collect max value from both sets
 		boolean[] union = new boolean[max+1];
 		
 		for (int elem : setA) {
-			union[elem] = true;													// Mark elements from first set
+			union[elem] = true;		// Mark elements from first set
 		 }
 		  
 		for (int elem : setB) {
-			union[elem] = true;													//from second set
+			union[elem] = true;		//from second set
 		}
 
 		List<Integer> result = new ArrayList<>();
 		for (int i = 0; i < union.length; i++) {
 			if (union[i]) {
-				result.add(i);													// Collect indices where value is true
+				result.add(i);		// Collect indices where value is true
 		    }
 		}
 		
@@ -84,17 +84,17 @@ public class SetOperations {
 		int size = setA.size();
 		boolean[] check = new boolean[size];
 		
-		HashSet<Integer> result = new HashSet<>();					//created a hashset so we can use this approach for multi-sets
+		HashSet<Integer> result = new HashSet<>();		//created a hashset so we can use this approach for multi-sets
 		
 		for(int x = 0; x < size; x++) {
-			if(setB.contains(setA.get(x))){							//checks index as true if element is also in set B
+			if(setB.contains(setA.get(x))){			//checks index as true if element is also in set B
 				check[x] = true;
 			}
 		}
 		
 		for(int x = 0; x < size; x++) {
 			if(check[x]) {
-				result.add(setA.get(x));							//adds element from set A if its index is marked true in boolean array
+				result.add(setA.get(x));		//adds element from set A if its index is marked true in boolean array
 			}
 		}
 		return result;
@@ -115,7 +115,7 @@ public class SetOperations {
 		
 		for(int x = 0; x < size; x++) {
 			if(setB.contains(setA.get(x))) {
-				check[x] = true;						//mark indices in boolean array as true if corresponding index element from set A is also in set B
+				check[x] = true;			//mark indices in boolean array as true if corresponding index element from set A is also in set B
 			}
 		}
 		
@@ -123,7 +123,7 @@ public class SetOperations {
 		 
 		for(int x = 0; x < size; x++) {
 			if(!check[x]) {
-				result.add(setA.get(x));				//adds element from set A if its index is marked false in boolean array
+				result.add(setA.get(x));		//adds element from set A if its index is marked false in boolean array
 			}
 		}
 		return result;
