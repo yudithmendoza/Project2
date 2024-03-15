@@ -7,7 +7,8 @@ import java.util.List;
 
 /**
  * methods to represent all set operations
- * union, intersect, complement, difference, and symmetric difference
+ * union, intersect, complement, difference, and symmetric difference of sets
+ * 
  */
 public class SetOperations {
 	/**
@@ -25,20 +26,18 @@ public class SetOperations {
 		
 		List<Integer> result = new ArrayList<>();	
 		
-		//if setA has the element at set[x], check[x] gets marked as true
 		for(int x = 0; x < size; x++) {
 			if(setA.contains(set.get(x))){
-				check[x] = true;
+				check[x] = true;					//if set A has the element at x, check[x] gets marked as true
 			}
 		}
 		
-		//add any items from array booleans that are marked as false 
 		for(int x = 0; x < size; x++) {
 			if(!check[x]) {
-				result.add(set.get(x));
+				result.add(set.get(x));				//add any items from boolean array that are false 
 			}
 		}
-        	return result;
+        return result;
 	}
 	
 	/**
@@ -49,30 +48,28 @@ public class SetOperations {
 	 * @return union 
 	 */
 	public List<Integer> union(List<Integer> setA, List<Integer>setB) {
-
-		//will collect max value from both sets
-		int max = Math.max(Collections.max(setA), Collections.max(setB));
-        	boolean[] union = new boolean[max+1];
-
-        	// Mark elements first set
-        	for (int elem : setA) {
-            	union[elem] = true;
-        	}
-        	//from second set
-        	for (int elem : setB) {
-            	union[elem] = true;
-        	}
-
-        	// Collect indices where value is true
-        	List<Integer> result = new ArrayList<>();
-        	for (int i = 0; i < union.length; i++) {
-            	if (union[i]) {
-                result.add(i);
-            	}
-        }
-        return result;
 		
+		int max = Math.max(Collections.max(setA), Collections.max(setB));		//will collect max value from both sets
+		boolean[] union = new boolean[max+1];
+		
+		for (int elem : setA) {
+			union[elem] = true;													// Mark elements from first set
+		 }
+		  
+		for (int elem : setB) {
+			union[elem] = true;													//from second set
+		}
+
+		List<Integer> result = new ArrayList<>();
+		for (int i = 0; i < union.length; i++) {
+			if (union[i]) {
+				result.add(i);													// Collect indices where value is true
+		    }
+		}
+		
+		return result;
 	}
+		
 	
 	/**
 	 * intersection of both sets
@@ -82,9 +79,25 @@ public class SetOperations {
 	 * @param setB
 	 * @return the intersection of both sets
 	 */
-	public List<Integer> intersect(List<Integer> setA, List<Integer>setB) {
-		//TODO
-		return null;
+	public HashSet<Integer> intersect(List<Integer> setA, List<Integer>setB) {
+		
+		int size = setA.size();
+		boolean[] check = new boolean[size];
+		
+		HashSet<Integer> result = new HashSet<>();					//created a hashset so we can use this approach for multi-sets
+		
+		for(int x = 0; x < size; x++) {
+			if(setB.contains(setA.get(x))){							//checks index as true if element is also in set B
+				check[x] = true;
+			}
+		}
+		
+		for(int x = 0; x < size; x++) {
+			if(check[x]) {
+				result.add(setA.get(x));							//adds element from set A if its index is marked true in boolean array
+			}
+		}
+		return result;
 	}
 	
 	/**
@@ -96,22 +109,21 @@ public class SetOperations {
 	 * @return difference of setA and setB
 	 */
 	public List<Integer> difference(List<Integer> setA, List<Integer> setB) {
+		
 		int size = setA.size();
 		boolean[] check = new boolean[size];
 		
-		//mark indices in boolean array as true if corresponding index element from set A is also in set B
 		for(int x = 0; x < size; x++) {
 			if(setB.contains(setA.get(x))) {
-				check[x] = true;
+				check[x] = true;						//mark indices in boolean array as true if corresponding index element from set A is also in set B
 			}
 		}
 		
 		List<Integer> result = new ArrayList<>();	
-		
-		//collect values from set A from indices where boolean has marked them as false
+		 
 		for(int x = 0; x < size; x++) {
 			if(!check[x]) {
-				result.add(setA.get(x));
+				result.add(setA.get(x));				//adds element from set A if its index is marked false in boolean array
 			}
 		}
 		return result;
@@ -126,22 +138,10 @@ public class SetOperations {
 	 * @return
 	 */
 	public List<Integer> symmetricDifference(List<Integer> setA, List<Integer> setB) {
+	
 		List<Integer> result = new ArrayList<>();
-
-		//(A-B)∪(B-A)
-		result = (union(difference(setA, setB), difference(setB, setA)));
+		
+		result = (union(difference(setA, setB), difference(setB, setA)));  //(A-B) ∪ (B-A)
 		return result;
 	}
-	
-	/**
-	 * adds sets A and B (only for multisets)
-	 * @param setA
-	 * @param setB
-	 * @return
-	 */
-	public List<Integer> add(List<Integer> setA, List<Integer> setB) {
-		//TODO
-		return null;
-	}
-	
 }
